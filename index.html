@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoJS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BBH+Hegarty&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/index.css">
+</head>
+<body>
+    <div class="nav">
+        <a href="index.html">HOME</a>
+        <a href="current.html">CURRENT TASKS</a>
+        <a href="finished.html">FINISHED TASKS</a>
+        <a href="about.html">ABOUT</a>
+    </div>
+    <div class="main-container">
+        <div class="welcome">
+            <h1>TodoJS</h1>
+            <h4>"A journey of a thousand miles begins with a single step"</h4>
+        </div>
+        <div id="add_task">
+            <h3>↓Add your first task now↓</h3>
+            <input id="index_add_task_input" placeholder="Make my bed">
+            <div id="radio_boxes">
+                <h3>Choose your task's priority:</h3>
+                <div id="boxes">
+                    <div>
+                        <input type="radio" id="high" name="priority">
+                        <label for="high">High</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="medium" name="priority">
+                        <label for="medium">Medium</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="low" name="priority">
+                        <label for="low">Low</label>
+                    </div>
+                </div>
+            </div>
+            <button id="index_button">Take A Step</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
