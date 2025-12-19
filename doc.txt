@@ -1,0 +1,5 @@
+19/12/2025 - Melb Airport to Adelaide
+- learning how to validate form and show error msgs
+- learnt how to apply footer css styles
+- learnt how to use setInterval and constantly update the time object
+- learnt how to use localStorage for task storing as object
