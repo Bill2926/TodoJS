@@ -23,9 +23,24 @@ function getCurrentDateTime() {
     document.getElementById("time_box").innerHTML = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 }
 
+function convertDueDate() {
+    let due = document.getElementById("due_input").value;
+    if (due === "") {
+        return due = "N/A"
+    }else {
+        const dueStr = new Date(due);
+        const day = String(dueStr.getDate()).padStart(2, '0');
+        const month = String(dueStr.getMonth() + 1).padStart(2, '0');
+        const year = dueStr.getFullYear();
+        
+        const due_formated = `${day}/${month}/${year}`;
+        return due_formated
+    }
+}
+
 submitTask.onclick = function() {
-    let taskName = document.getElementById("index_add_task_input").value;
-    if (taskName == "") {
+    let taskName = document.getElementById("task_input").value;
+    if (taskName === "") {
         document.getElementById("error_msg").innerHTML = "Invalid task, please try again.";
         document.getElementById("error_msg").style.color = "red";
         document.getElementById("error_msg").style.marginTop = "10px";
@@ -45,9 +60,20 @@ submitTask.onclick = function() {
         prior = "Low";
     }
 
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = now.getFullYear();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const created_at = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+
     const taskObj = {
         "name": taskName,
-        "priority": prior
+        "priority": prior,
+        "due": convertDueDate(),
+        "created_at": created_at,
     };
 
     // get the current todo array, or an empty one if there is none
@@ -55,5 +81,6 @@ submitTask.onclick = function() {
     // append
     todo.push(taskObj);
     // re-setItem
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("todo", JSON.stringify(todo));
+    location.href = 'current.html';
 }

@@ -23,9 +23,9 @@
         </div>
         <div id="add_task">
             <h3>↓Add your first task now↓</h3>
-            <input id="index_add_task_input" placeholder="Make my bed">
+            <input id="task_input" placeholder="Make my bed">
             <div id="radio_boxes">
-                <h3>Choose your task's priority:</h3>
+                <h3 style="margin-bottom: 0.4rem;">Choose your task's priority:</h3>
                 <div id="boxes">
                     <div>
                         <input type="radio" id="high" name="priority">
@@ -41,6 +41,8 @@
                     </div>
                 </div>
             </div>
+            <p style="margin-top: 1.5rem;">Enter the due time dd/mm/yyyy (optional)</p>
+            <input id="due_input" type="date">
             <p id="error_msg"></p>
             <button id="index_button">Take A Step</button>
         </div>

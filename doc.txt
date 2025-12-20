@@ -1,3 +1,8 @@
+21/12/2025 - Adelaide
+- DOM Manipulation create new elements
+- use type date input
+- added new attributes: due date and created at
+
 19/12/2025 - Melb Airport to Adelaide
 - learning how to validate form and show error msgs
 - learnt how to apply footer css styles

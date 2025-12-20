@@ -49,7 +49,7 @@ body {
     align-items: center;
 }
 
-#index_add_task_input {
+#task_input {
     margin-top: 1rem;
     padding: 1em 1em;
     border-radius: 10px;
@@ -59,7 +59,7 @@ body {
     width: 30%;
 }
 
-#index_add_task_input::placeholder {
+#task_input::placeholder {
     color: lime;
 }
 
@@ -81,6 +81,16 @@ body {
     border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
+}
+
+#due_input {
+    margin-top: 1rem;
+    padding: 1em 1em;
+    border-radius: 10px;
+    background-color: black;
+    border-color: lime;
+    color: lime;
+    width: 30%;
 }
 
 #index_button:hover {
