@@ -23,6 +23,42 @@ body {
     cursor: pointer;
 }
 
+#modal {
+    z-index: 1;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0,0.4);
+}
+
+#modal_content {
+    margin: 15% auto;
+    width: fit-content;
+    background-color: black;
+    padding: 20px;
+    color: lime;
+    border: 1px solid lime;
+}
+
+#modal_btn_container button {
+    background-color: lime;
+    border: solid lime;
+    color: black;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+#modal_btn_container button:hover {
+    background-color: black;
+    color: lime;
+    border: solid lime;
+}
+
 #main_container {
     color: lime;
     text-align: center;
@@ -68,4 +104,38 @@ body {
 
 .due {
     margin-bottom: 0.2rem;
+}
+
+.finished_btn {
+    position: absolute;
+    right: 5px;
+    bottom: 8px;
+    padding: 5px 8px;
+    border-radius: 10px;
+    color: black;
+    background-color: lime;
+    border: solid lime;
+}
+
+.finished_btn:hover {
+    background-color: black;
+    color: lime;
+    cursor: pointer;
+}
+
+.delete_btn {
+    position: absolute;
+    right: 70px;
+    bottom: 8px;
+    padding: 5px 8px;
+    border-radius: 10px;
+    color: white;
+    background-color: red;
+    border: solid red;
+}
+
+.delete_btn:hover {
+    background-color: white;
+    color: red;
+    cursor: pointer;
 }

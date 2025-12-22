@@ -1,3 +1,8 @@
+22/12/2025 - Glenelg, Adelaide
+- added Finish and Delete buttons
+- added modal to notify delete process
+- learnt about eventlistener in JS
+
 21/12/2025 - Adelaide
 - DOM Manipulation create new elements
 - use type date input
