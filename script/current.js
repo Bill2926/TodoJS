@@ -1,17 +1,36 @@
-let todo = JSON.parse(localStorage.getItem("todo"))
-const mainContainer = document.getElementById('mid')
-const modalContainer = document.getElementById('modal')
-const noModalBtn = document.getElementById('no')
+const mainContainer = document.getElementById('mid');
+const modalContainer = document.getElementById('modal');
+const noModalBtn = document.getElementById('no');
+const yesModalBtn = document.getElementById('yes');
+const modalContentText = document.getElementById('modal_content_text');
+let selectedTask;
+let type;
 
-if (todo == null) {
-    document.getElementById('mid').innerHTML = "There is currently now task. Please consider adding one!";
-    document.getElementById('mid').style.color = "white";
-} else {createTaskBoxes()}
+checkEmptyTodo()
+
+function checkEmptyTodo() {
+    const todo = JSON.parse(localStorage.getItem("todo"))
+    if (todo == null || todo.length === 0) {
+        mainContainer.innerHTML = "Great job! There is no task for now.";
+        mainContainer.style.color = "white";
+    } else {
+        createTaskBoxes()
+    }
+}
 
 function createTaskBoxes() {
-    for (let i= 0; i < todo.length; i++) {
+    const todo = JSON.parse(localStorage.getItem("todo"))
+    
+    mainContainer.innerHTML = '';
+
+    const taskLeftDiv = document.createElement('div')
+    taskLeftDiv.id = "taskLeftDiv"
+    taskLeftDiv.innerHTML = `Current number of tasks: ${todo.length}`
+    mainContainer.appendChild(taskLeftDiv)
+
+    for (let i = 0; i < todo.length; i++) {
         const newDiv = document.createElement("div");
-        newDiv.className = 'task_box';
+        newDiv.className = `task_box ${todo[i].id}`;
 
         const name = todo[i].name;
         const priority = todo[i].priority.toUpperCase();
@@ -49,19 +68,52 @@ function createTaskBoxes() {
         newDiv.appendChild(finished_btn);
         newDiv.appendChild(delete_btn);
 
-        document.getElementById('mid').appendChild(newDiv);
-    };
+        mainContainer.appendChild(newDiv)
+    }
 }
 
-mainContainer.addEventListener("click", (e) => {
-    // if (e.target.className == "delete_btn") {
-    //     modalContainer.style.display = "block";
-    // }
+function modalContentDisplay(type) {
+    modalContentText.innerHTML = ''
+    typeTitle = document.createElement('h2')
+    paragraphModal = document.createElement('p')
+    paragraphModal.style.marginTop = "1rem"
+    typeTitle.style = "font-family: BBH Hegarty, sans-serif; letter-spacing: 3px;"
+    if (type === false) {
+        typeTitle.innerHTML = "WARNING!"
+        paragraphModal.innerHTML = "You have not finished this task. Still delete ?"
+    } else if (type === true) {
+        typeTitle.innerHTML = "CONFIRMATION"
+        paragraphModal.innerHTML = "You finished this task ? if so, well done ! click yes to conintue"
+    }
+    modalContentText.appendChild(typeTitle)
+    modalContentText.appendChild(paragraphModal)
+}
 
-    // this will handle the situation where class name looks like this
-    // <div class="delete_btn new old"></div>
+window.addEventListener('focus', () => {
+    checkEmptyTodo()
+});
+
+mainContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("delete_btn")) {
-        modalContainer.style.display = "block";
+        modalContentDisplay(false)
+        modalContainer.style.display = "block"
+        selectedTask = e.target.closest('.task_box')
+    } else if (e.target.classList.contains("finished_btn")) {
+        modalContentDisplay(true)
+        modalContainer.style.display = "block"
+        selectedTask = e.target.closest('.task_box')
+    }
+})
+
+modalContainer.addEventListener("click", (e) => {    
+    if (e.target == yesModalBtn) {
+        const todo = JSON.parse(localStorage.getItem("todo"))
+        const i = todo.findIndex(task => task.id === selectedTask.classList[1])
+        todo.splice(i, 1)
+        localStorage.setItem("todo", JSON.stringify(todo));
+        modalContainer.style.display = "none"
+        selectedTask = null
+        checkEmptyTodo()
     }
 })
 

@@ -69,18 +69,38 @@ submitTask.onclick = function() {
     const seconds = String(now.getSeconds()).padStart(2, '0');
     const created_at = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 
+    // get the current todo array, or an empty one if there is none
+    const todo = JSON.parse(localStorage.getItem("todo")) || [];
+    validID = false
+    let id;
+    while (validID == false) {
+        id = assignTaskId(100,999).toString();
+        for (let i=0; i < todo.length; i++) {
+            if (todo[i].id === id) {
+                return
+            }
+        }
+        validID = true
+    }
+
     const taskObj = {
+        "id": id,
         "name": taskName,
         "priority": prior,
         "due": convertDueDate(),
         "created_at": created_at,
+        "complete": false
     };
 
-    // get the current todo array, or an empty one if there is none
-    let todo = JSON.parse(localStorage.getItem("todo")) || [];
     // append
     todo.push(taskObj);
     // re-setItem
     localStorage.setItem("todo", JSON.stringify(todo));
     location.href = 'current.html';
+}
+
+function assignTaskId(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

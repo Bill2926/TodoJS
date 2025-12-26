@@ -1,3 +1,11 @@
+26/12/2025 - Adelaide Airport
+- learn to use .splice(), .findIndex()
+- remove the task box
+- modify the todo array after deleted
+- added finished.html, css and js
+- fixed current.js (duplicated code and variables)
+- fixed modal to show content based on buttons clicked (yes/no)
+
 22/12/2025 - Glenelg, Adelaide
 - added Finish and Delete buttons
 - added modal to notify delete process

@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: black;
+}
+
+body {
+    font-family: "Google Sans", sans-serif;
+}
+
+.nav {
+    color: lime;
+    display: flex;
+    margin: 2rem auto 3rem auto;    
+    width: 60%;
+    justify-content: space-around;
+}
+
+.nav a {
+    text-decoration: none;
+    color: lime;
+    cursor: pointer;
+}
+
+#main_container {
+    color: lime;
+    text-align: center;
+}
+
+#upper h2 {
+    font-family: "BBH Hegarty", sans-serif !important;
+    font-weight: 300;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+#mid {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    width: 100%;
+}
