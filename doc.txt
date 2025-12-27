@@ -1,3 +1,8 @@
+27/12/2025 - Sebel Hotel, Kew, Melb
+- restructure current.js
+- added finish confirmation and remove item
+- initialize async await function in current.js
+
 26/12/2025 - Adelaide Airport
 - learn to use .splice(), .findIndex()
 - remove the task box

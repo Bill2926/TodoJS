@@ -5,8 +5,7 @@ const yesModalBtn = document.getElementById('yes');
 const modalContentText = document.getElementById('modal_content_text');
 let selectedTask;
 let type;
-
-checkEmptyTodo()
+let currentProcess;
 
 function checkEmptyTodo() {
     const todo = JSON.parse(localStorage.getItem("todo"))
@@ -70,6 +69,11 @@ function createTaskBoxes() {
 
         mainContainer.appendChild(newDiv)
     }
+    
+    const finishInBulk = document.createElement('button');
+    finishInBulk.innerHTML = 'Click me to mark finish mutiple tasks';
+    finishInBulk.id = 'finishInBulk';
+    mainContainer.appendChild(finishInBulk);
 }
 
 function modalContentDisplay(type) {
@@ -89,33 +93,55 @@ function modalContentDisplay(type) {
     modalContentText.appendChild(paragraphModal)
 }
 
-window.addEventListener('focus', () => {
+function handleWindowFocus() {
     checkEmptyTodo()
-});
+}
 
-mainContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("delete_btn")) {
-        modalContentDisplay(false)
-        modalContainer.style.display = "block"
-        selectedTask = e.target.closest('.task_box')
-    } else if (e.target.classList.contains("finished_btn")) {
-        modalContentDisplay(true)
-        modalContainer.style.display = "block"
-        selectedTask = e.target.closest('.task_box')
-    }
-})
-
-modalContainer.addEventListener("click", (e) => {    
-    if (e.target == yesModalBtn) {
+function handleTasks(e) {    
+    if (e.target == yesModalBtn && currentProcess == 'del') {
         const todo = JSON.parse(localStorage.getItem("todo"))
         const i = todo.findIndex(task => task.id === selectedTask.classList[1])
+        // splice: from the index 'i', pop an item out (which is 'i' itself)
         todo.splice(i, 1)
         localStorage.setItem("todo", JSON.stringify(todo));
         modalContainer.style.display = "none"
         selectedTask = null
         checkEmptyTodo()
+    } else if (e.target == yesModalBtn && currentProcess == 'fin') {
+        const todo = JSON.parse(localStorage.getItem("todo"))
+        const i = todo.findIndex(task => task.id === selectedTask.classList[1])
+        // splice returns an array, so here i need to only take the first item of that array
+        // else when i push back in, i will get array in array
+        let finishedTask = todo.splice(i, 1)[0]
+
+        const finished = JSON.parse(localStorage.getItem("finished")) || [];
+        finished.push(finishedTask)
+        // update both finished arr and todo arr
+        localStorage.setItem("finished", JSON.stringify(finished));
+        localStorage.setItem("todo", JSON.stringify(todo));
+        modalContainer.style.display = "none"
+        selectedTask = null
+        checkEmptyTodo()
     }
-})
+}
+
+function showModals(e) {
+    if (e.target.classList.contains("delete_btn")) {
+        modalContentDisplay(false)
+        modalContainer.style.display = "block"
+        selectedTask = e.target.closest('.task_box')
+        currentProcess = 'del'
+    } else if (e.target.classList.contains("finished_btn")) {
+        modalContentDisplay(true)
+        modalContainer.style.display = "block"
+        selectedTask = e.target.closest('.task_box')
+        currentProcess = 'fin'
+    }
+}
+
+async function finishBulk() {
+    // 
+}
 
 noModalBtn.onclick = function() {
     modalContainer.style.display = "none";
@@ -126,3 +152,10 @@ modalContainer.addEventListener("click", (e) => {
         modalContainer.style.display = "none";
     }
 })
+
+window.addEventListener('focus', handleWindowFocus);
+modalContainer.addEventListener('click', handleTasks);
+mainContainer.addEventListener("click", showModals);
+
+// INITIALIZATION
+checkEmptyTodo()

@@ -41,3 +41,66 @@ body {
     margin-top: 3rem;
     width: 100%;
 }
+
+.task_box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    position: relative;
+    margin: 1rem auto;
+    width: 50%;
+    align-items: flex-start;
+    padding: 15px 25px;
+    border: solid red;
+    color: red;
+    border-radius: 10px;
+}
+
+.priority {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+}
+
+.name {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.due {
+    margin-bottom: 0.2rem;
+}
+
+.revive_btn {
+    position: absolute;
+    right: 5px;
+    bottom: 8px;
+    padding: 5px 8px;
+    border-radius: 10px;
+    color: black;
+    background-color: lime;
+    border: solid lime;
+}
+
+.revive_btn:hover {
+    background-color: black;
+    color: lime;
+    cursor: pointer;
+}
+
+.delete_btn {
+    position: absolute;
+    right: 70px;
+    bottom: 8px;
+    padding: 5px 8px;
+    border-radius: 10px;
+    color: white;
+    background-color: red;
+    border: solid red;
+}
+
+.delete_btn:hover {
+    background-color: white;
+    color: red;
+    cursor: pointer;
+}
