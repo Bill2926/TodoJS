@@ -61,7 +61,7 @@ body {
 
 #main_container {
     color: lime;
-    text-align: center;
+    text-align: center; 
 }
 
 #upper h2 {
@@ -76,6 +76,7 @@ body {
     flex-direction: column;
     margin-top: 3rem;
     width: 100%;
+    position: relative;
 }
 
 .task_box {
@@ -156,4 +157,98 @@ body {
     background-color: black;
     color: lime;
     cursor: pointer;
+}
+
+.toggle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 80px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #1a1a1a;
+    border: 2px solid #333;
+    transition: 0.3s;
+    border-radius: 40px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 28px;
+    width: 28px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #444;
+    transition: 0.3s;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+input:checked + .slider {
+    background-color: #003300;
+    border-color: #00ff00;
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.3), 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+input:checked + .slider:before {
+    transform: translateX(40px);
+    background-color: #00ff00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8), 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#toggleDescription {
+    margin-top: 1rem;
+    color: lime;
+}
+
+.multipleSelectedStyle {
+    border: solid red;
+}
+
+#mutipleConfirmBtn {
+    width: fit-content;
+    padding: 5px 8px;
+    margin: 0 auto;
+    border-radius: 10px;
+    color: black;
+    background-color: lime;
+    border: solid lime;
+    cursor: pointer
+}
+
+.fade-out-animation {
+  animation-name: fadeOut;
+  animation-duration: 0.5s; /* The duration of the animation */
+  animation-fill-mode: forwards; /* Ensures it stays hidden after completion */
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1; /* Start fully visible */
+  }
+  100% {
+    opacity: 0; /* End fully hidden */
+  }
 }

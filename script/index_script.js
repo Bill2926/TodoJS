@@ -96,7 +96,6 @@ submitTask.onclick = function() {
     todo.push(taskObj);
     // re-setItem
     localStorage.setItem("todo", JSON.stringify(todo));
-    location.href = 'current.html';
 }
 
 function assignTaskId(min, max) {

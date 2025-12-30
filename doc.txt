@@ -1,3 +1,10 @@
+30/12/2025 - Hanoi
+- learn about toggle
+- enable mutiple mark done (toggle to turn on and toggle off to revert changes)
+- refine current.js (create helper methods and remove unused codes)
+- after added task on home page, it wont be redirected to current tab
+- async function that remove the tasks (in multiple mode) one by one on the UI
+
 27/12/2025 - Sebel Hotel, Kew, Melb
 - restructure current.js
 - added finish confirmation and remove item
